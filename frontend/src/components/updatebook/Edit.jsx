@@ -23,7 +23,7 @@ const Edit = () => {
 
   useEffect(() => {
     axios
-      .get(`https://mern-book-backend-1.onrender.com/api/getone/${id}`)
+      .get(`http://localhost:8000/api/getone/${id}`)
       .then((response) => {
         console.log(response.data);
         setBook(response.data.book);
@@ -35,7 +35,7 @@ const Edit = () => {
   const submitForm = async (e) => {
     e.preventDefault();
     await axios
-      .put(`https://mern-book-backend-1.onrender.com/api/update/${id}`, book)
+      .put(`http://localhost:8000/api/update/${id}`, book)
       .then((response) => {
         // console.log(response);
         toast.success(response.data.msg, { position: 'top-center' });
