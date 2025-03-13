@@ -1,0 +1,105 @@
+// import React, { useEffect, useState } from 'react';
+// import { Link } from 'react-router-dom';
+// import './Books.css';
+// import axios from 'axios';
+// import toast from 'react-hot-toast';
+
+// const Books = () => {
+//   const bookss = {
+//     book_name: '',
+//   };
+
+//   const [books, setBooks] = useState([]);
+//   const [search, setSearch] = useState(bookss);
+
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       const response = await axios.get('http://localhost:8000/api/getall/');
+//       setBooks(response.data);
+//     };
+//     fetchData();
+//   }, []);
+
+//   const deleteBook = async (userID) => {
+//     await axios
+//       .delete(`http://localhost:8000/api/delete/${userID}`)
+//       .then((response) => {
+//         setBooks((prevBook) => prevBook.filter((user) => user._id !== userID));
+//         console.log(response);
+//         toast.success(response.data.msg, { position: 'top-center' });
+//       })
+//       .catch((error) => console.log(error));
+//   };
+
+//   const inputHandler = (e) => {
+//     setSearch(e.target.value);
+//   };
+
+//   const displaySearch = async () => {
+//     if (!search.trim()) {
+//       // If search box is empty, fetch all books again
+//       const response = await axios.get('http://localhost:8000/api/getall/');
+//       setBooks(response.data);
+//     } else {
+//       // Fetch filtered books based on search query
+//       const response = await axios.get(
+//         `http://localhost:8000/api/search/${search}`
+//       );
+//       setBooks(response.data);
+//     }
+//   };
+
+//   return (
+//     <div className="books-table">
+//       <div className="header-container">
+//         <Link to={'/add'} className="add-btn">
+//           <i className="fa-solid fa-plus"></i>
+//         </Link>
+//         <div className="search-container">
+//           <input
+//             type="text"
+//             placeholder="Search..."
+//             className="search-input"
+//             onChange={inputHandler}
+//           />
+//           <i className="search-icon" onClick={displaySearch}>
+//             🔍
+//           </i>
+//         </div>
+//       </div>
+//       <table border={1} cellPadding={10} cellSpacing={0}>
+//         <thead>
+//           <tr>
+//             <th>S.No</th>
+//             <th>Book Name</th>
+//             <th>Book Author</th>
+//             <th>Parts</th>
+//             <th>Actions</th>
+//           </tr>
+//         </thead>
+//         <tbody>
+//           {books.map((book, index) => {
+//             return (
+//               <tr key={book._id}>
+//                 <td>{index + 1}</td>
+//                 <td>{book.book_name}</td>
+//                 <td>{book.book_author}</td>
+//                 <td>{book.book_parts}</td>
+//                 <td className="action-btns">
+//                   <button onClick={() => deleteBook(book._id)}>
+//                     <i className="fa-solid fa-trash"></i>
+//                   </button>
+//                   <Link to={`/edit/` + book._id}>
+//                     <i className="fa-solid fa-pen"></i>
+//                   </Link>
+//                 </td>
+//               </tr>
+//             );
+//           })}
+//         </tbody>
+//       </table>
+//     </div>
+//   );
+// };
+
+// export default Books;
