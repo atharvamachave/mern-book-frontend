@@ -12,7 +12,7 @@ const Books = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/api/getall/');
+        const response = await axios.get('https://mernbook-axql.onrender.com/api/getall/');
         console.log('API Response:', response.data); // Debugging
         setBooks(Array.isArray(response.data) ? response.data : []);
       } catch (error) {
@@ -27,7 +27,7 @@ const Books = () => {
   const deleteBook = async (bookID) => {
     try {
       const response = await axios.delete(
-        `http://localhost:8000/api/delete/${bookID}`
+        `https://mernbook-axql.onrender.com/api/delete/${bookID}`
       );
       setBooks((prevBooks) => prevBooks.filter((book) => book._id !== bookID));
       toast.success(response.data.msg, { position: 'top-center' });
@@ -47,12 +47,12 @@ const Books = () => {
     try {
       if (!search.trim()) {
         // If search box is empty, fetch all books again
-        const response = await axios.get('http://localhost:8000/api/getall/');
+        const response = await axios.get('https://mernbook-axql.onrender.com/api/getall/');
         setBooks(Array.isArray(response.data) ? response.data : []);
       } else {
         // Fetch filtered books based on search query
         const response = await axios.get(
-          `http://localhost:8000/api/search/${search}`
+          `https://mernbook-axql.onrender.com/api/search/${search}`
         );
         console.log('Search Response:', response.data);
 
