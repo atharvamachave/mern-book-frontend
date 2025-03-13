@@ -27,7 +27,7 @@ const Add = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        'http://localhost:8000/api/create/',
+        'https://mern-book-backend-1.onrender.com/api/create/',
         book
       );
 
